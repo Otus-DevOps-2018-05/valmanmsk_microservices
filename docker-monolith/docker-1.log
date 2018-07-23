@@ -1,0 +1,7 @@
+REPOSITORY                  TAG                 IMAGE ID            CREATED              SIZE
+valmanmsk/ubuntu-tmp-file   latest              849b645247d1        About a minute ago   115MB
+ubuntu                      16.04               e13f3d529b1a        6 days ago           115MB
+hello-world                 latest              2cb0d9787c4d        12 days ago          1.85kB
+
+В отличие от образа вывод docker inspect ID-контейнера содержит информацию о статусе контейнера, сетевых настройках и т.д.
+
