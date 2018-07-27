@@ -1,0 +1,21 @@
+---
+- name: Install docker-py
+  hosts: all
+  become: true
+  gather_facts: False
+  tags:
+    - docker_install
+
+  tasks:
+    - name: Install python-apt
+      apt:
+        name: python-apt
+
+    - name: Install python packer manager
+      apt:
+        name: python-pip
+
+    - name: Install module docker
+      pip:
+        name: docker
+
