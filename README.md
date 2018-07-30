@@ -54,6 +54,7 @@ valmanmsk microservices repository
 ```docker run -d --network=reddit --network-alias=post_db1 --network-alias=comment_db1 mongo:latest
 docker run -d --network=reddit --network-alias=post1 --env POST_DATABASE_HOST=post_db1 valmanmsk/post:1.0
 docker run -d --network=reddit --network-alias=comment1 --env COMMENT_DATABASE_HOST=comment_db1 valmanmsk/comment:1.0
-docker run -d --network=reddit --env POST_SERVICE_HOST=post1 --env COMMENT_SERVICE_HOST=comment1 -p 9292:9292 valmanmsk/ui:1.0```
+docker run -d --network=reddit --env POST_SERVICE_HOST=post1 --env COMMENT_SERVICE_HOST=comment1 -p 9292:9292 valmanmsk/ui:1.0
+```
 - Собрал образ ui на основе alpine linux. На версии 3.8 приложение не работает, поэтому собрал на версии 3.7
 
