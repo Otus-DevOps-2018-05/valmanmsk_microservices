@@ -1,7 +1,7 @@
 # valmanmsk_microservices
 valmanmsk microservices repository
 
-# ДЗ-13:
+# ДЗ-12:
 
 ## Что сделано
 
@@ -15,7 +15,7 @@ valmanmsk microservices repository
 
 - Сравнил вывод команды docker inspect для контейнера и для образа
 
-# ДЗ-14:
+# ДЗ-13:
 
 ## Что сделано
 
@@ -35,7 +35,7 @@ valmanmsk microservices repository
 - Создал плейбуки Ansible для установки docker-ce и запуска контейнера из своего образа на Docker Hub
 - Создал шаблон Packer для создания образа с установленным docker-ce в GCE
 
-# ДЗ-15:
+# ДЗ-14:
 
 ## Что сделано
 
@@ -57,4 +57,27 @@ docker run -d --network=reddit --network-alias=comment1 --env COMMENT_DATABASE_H
 docker run -d --network=reddit --env POST_SERVICE_HOST=post1 --env COMMENT_SERVICE_HOST=comment1 -p 9292:9292 valmanmsk/ui:1.0
 ```
 - Собрал образ ui на основе alpine linux. На версии 3.8 приложение не работает, поэтому собрал на версии 3.7
+
+# ДЗ-15:
+
+## Что сделано:
+
+- Создал docker-host с помощью docker-machine
+- Подключился к нему с помощью ```eval $(docker-machine env docker-host)```
+- Изучил None network driver и Host network driver с помощью запуска контейнера из образа joffotron/docker-net-tools
+- Запустил проект reddit из образов созданных в прошлых ДЗ в одной сети reddit
+- Запустил проект в двух сетях ```front_net и back_net```
+- Изучил с помощью ```bridge-utils``` bridge-интерфейсы каждой из сетей
+- Посмотрел правила iptables
+- Убедился, что процесс ```docker-proxy``` запущен
+- Установил docker-compose на локальную машину
+- Создал файл ```docker-compose.yml```
+- Собрал образы и запустил контейнеры из этих образов с помощью ```docker-compose```
+- Отредактировал файл ```docker-compose.yml``` чтобы приложения запускались в разных сетях
+- Параметризировал порт хоста, порт докера, протокол сервиса ui, параметризирвал версии сервисов
+- Записал эти параметры в файл .env
+- Убедился, что ```docker-compose up -d``` подхватывает переменные из файла .env
+- Изменил базовое имя проекта с помощью параметра ```-p имя_проекта```, также можно прописать в файл .env параметр ```COMPOSE_PROJECT_NAME```
+- Создал файл ```docker-compose.override.yml```, где создал и смаппил ```volumes``` чтобы код приложений был в файловой системе хоста
+- В нем же прописал команду для запуска ```puma``` в дебаг режиме
 
