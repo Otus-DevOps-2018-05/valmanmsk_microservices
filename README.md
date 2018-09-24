@@ -108,3 +108,34 @@ docker run -d --network=reddit --env POST_SERVICE_HOST=post1 --env COMMENT_SERVI
 - Добавил директиву, чтобы на STAGE и PRODUCTION деплой запускался только при наличии тэга определенного формата
 - Создал динамическое окружение, которое создается для каждой ветки, кроме мастера
 
+# ДЗ-18:
+
+## Что сделано:
+- Создал правила файрвола и docker хост в GCE
+- Создал и запустил контейнер из готового образа Prometheus в dockerhub
+- Проверил работу веб-интерфейса
+- Собрал образ Prometheus
+- Собрал образы микросервисов из папок в src с помощью скрипта ```docker_build.sh```
+- Определил в файле docker/docker-compose.yml новый сервис prometheus и добавил сеть
+- Поднял сервисы
+- Проверил работу веб-интерфесов Prometheus и reddit
+- Все Targets поднялись и находятся в состоянии UP
+- В списке метрик нет ui_health. По ссылке http://ui:9090/metrics видно, что эти метрики закомментированы:
+```
+# TYPE ui_health gauge
+# HELP ui_health Health status of UI service
+# TYPE ui_health_post_availability gauge
+# HELP ui_health_post_availability Check if Post service is available to UI
+# TYPE ui_health_comment_availability gauge
+# HELP ui_health_comment_availability Check if Comment service is available to UI
+```
+- Определил в файле docker/docker-compose.yml сервис node-exporter
+- Прописал в Prometheus job для этого сервиса
+- Собрал новый Docker для Prometheus
+- Пересоздал сервисы
+- Проверил, что в списке Targets появился новый endpoint
+- С помощью метрики node_load1 проследил за ростом нагрузки при запуске: ```yes > /dev/null```
+- Запушил собранные образы на DockerHub:
+```
+https://hub.docker.com/u/valmanmsk/
+```
