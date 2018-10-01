@@ -8,3 +8,4 @@ receivers:
 - name: 'slack-notifications'
   slack_configs:
   - channel: '#valeriy_mandarov'
+
