@@ -1,7 +1,7 @@
 FROM  alpine:3.7
 
 RUN apk update \
-    && apk add --update --no-cache ruby ruby-dev build-base \
+    && apk add --update --no-cache ruby ruby-dev ruby-json build-base \
     && gem install bundler --no-ri --no-rdoc \
     && rm -rf /var/cache/apk/*
 
