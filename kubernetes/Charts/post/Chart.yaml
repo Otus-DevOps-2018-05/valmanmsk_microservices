@@ -1,0 +1,9 @@
+---
+name: post
+version: 1.0.0
+description: OTUS reddit application post
+maintainers:
+  - name: Valeriy Mandarov
+    email: valman.ykt@gmail.com
+appVersion: 1.0
+

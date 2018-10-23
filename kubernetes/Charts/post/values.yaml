@@ -1,0 +1,11 @@
+---
+service:
+  internalPort: 5000
+  externalPort: 5000
+
+image:
+  repository: valmanmsk/post
+  tag: latest
+
+databaseHost:
+
