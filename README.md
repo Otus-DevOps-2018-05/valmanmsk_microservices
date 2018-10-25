@@ -246,3 +246,28 @@ https://hub.docker.com/u/valmanmsk/
 - Созданные файлы .gitlab-ci.yml скопировал в папку src для каждой компоненты
 - Файл .gitlab-ci.yml из reddit-deploy скопировал в папку Charts
 
+# ДЗ №25
+
+## Что сделано:
+
+- Установил ingress-контроллер nginx
+- Загрузил и запустил Prometheus с помощью Helm чарта
+- Включил сервис kube-state-metrics
+- Включил сервис node-exporter
+- Запустил приложение из Helm чарта reddit
+- Добавил джоб reddit-endpoints
+- Добавил метки k8s для reddit-endpoints
+- Создал метки для kubernetes_namespace и kubernetes_name
+- Добавил джоб reddit-production
+- Разбил reddit-endpoints на три джоба - ```post-endpoints, comment-endpoints и ui-endpoints```
+- Поставил grafana с помощью helm
+- Настроил на prometheus data-source
+- Добавил Dashboard ```Kubernetes cluster monitoring (via Prometheus)```
+- Добавил свои Dashboard-ы
+- Создал новую переменную namespace
+- Изменил запросы в своих Dashboard-ах с учетом новой переменной
+- Сохранил свои Dashboard-ы в виде файлов
+- Запустил в кластере Fluentd и Elastic Search
+- Запустил Kibana из Helm чарта
+- Настроил Kibana на использование шаблона индекса fluentd
+
