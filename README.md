@@ -139,3 +139,25 @@ docker run -d --network=reddit --env POST_SERVICE_HOST=post1 --env COMMENT_SERVI
 ```
 https://hub.docker.com/u/valmanmsk/
 ```
+
+# ДЗ №19
+
+## Что сделано:
+
+- Создал docker-host в GCE
+- Разделил файл docker-compose.yml на два. Перенес мониторинг в отдельный файл
+- Добавил настройки для cAdvisor в docker-compose-monitoring.yml и в конфигурацию Prometheus
+- Запустил сервисы приложения и мониторинга
+- Проверил UI cAdvisor
+- Добавил настройки для Grafana в docker-compose-monitoring.yml
+- Запустил сервис grafana
+- Проверил UI Grafana
+- Добавил источник данных
+- Скачал и импортировал дашборд Docker_and_system_monitoring
+- Создал дашборды UI_Service_Monitoring и Business_Logic_Monitoring
+- Собрал компонент Alertmanager
+- Создал и настроил Incoming Webhook в персональном канале слака
+- Создал файл alerts.yml с условиями срабатывания алерта
+- Остановил сервис и убедился, что в слак приходит сообщение
+- Запушил docker-образы в https://hub.docker.com/u/valmanmsk/
+
