@@ -1,0 +1,8 @@
+---
+- name: Bootstraping etcd
+  hosts: controllers 
+  become: true
+  gather_facts: False
+  roles:
+    - bootstrap-etcd
+

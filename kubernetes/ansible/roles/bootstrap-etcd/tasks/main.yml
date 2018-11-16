@@ -1,0 +1,51 @@
+---
+- name:          "Install python for Ansible"
+  raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+  changed_when: False
+
+- name:          Install pre-requisites
+  apt:           name={{item}} state=present
+  with_items:
+    - unzip
+    - tar
+    - wget
+
+- name:          "Download etcd"
+  get_url:
+    url:         "https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz"
+    dest:        "."
+    mode:        0755
+
+- name:          "Extract etcd"
+  unarchive:
+    src:         "/home/appuser/etcd-v3.3.9-linux-amd64.tar.gz"
+    dest:        "."
+    copy:        "no"
+    mode:        0755
+
+- name:          "copy files in bin"
+  command:
+    cp /home/appuser/etcd-v3.3.9-linux-amd64/etcd /home/appuser/etcd-v3.3.9-linux-amd64/etcdctl /usr/local/bin/.
+
+- name:          "Create folder in etc"
+  file:          "path=/etc/etcd state=directory mode=0755"
+
+- name:          "Create folder in var"
+  file:          "path=/var/lib/etcd state=directory mode=0755"
+
+- name:          "Copy files .pem"
+  command:
+    cp /home/administrator1/ca.pem /home/administrator1/kubernetes-key.pem /home/administrator1/kubernetes.pem /etc/etcd/.
+
+- name:          "Generate config file"
+  template:
+    src:         "etcd.service.j2"
+    dest:        "/etc/systemd/system/etcd.service"
+    mode:        0755
+
+- name:          "Start etcd"
+  systemd:
+    name:        "etcd.service"
+    enabled:     "yes"
+    state:       "started"
+
