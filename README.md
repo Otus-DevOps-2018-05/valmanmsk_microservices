@@ -203,3 +203,23 @@ https://hub.docker.com/u/valmanmsk/
 - Развернул кластер в GKE с помощью Terraform
 - Создал YAML манифест для назначения Service Account роли ```cluster-admin```
 
+# ДЗ №23
+
+## Что сделано:
+
+- Настроил внешний облачный LoadBalancer
+- Создал ingress для ui
+- Создал и загрузил сертификат TLS в кластер kubernetes
+- Настроил ingress только на прием HTTPS
+- Описал secret в манифесте kubernetes
+- Создал и применил Network Policy
+- Дописал podSelector для post
+- Создал диск в GCE
+- Подключил на него Volume mongodb
+- Сконфигурировал PersistentVolume
+- Создал описание PersistentVolumeClaim
+- Подключил PVC к POD
+- Создал описание StorageClass для быстрых дисков
+- Создал описание для динамического PVC
+- Подключил этот PVC к POD
+
