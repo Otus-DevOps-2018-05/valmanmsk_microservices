@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_PROMETHEUS_SERVER",
-      "label": "Prometheus Server",
+      "name": "DS_PROM_PROMETHEUS",
+      "label": "Prom Prometheus",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.0.0"
+      "version": "5.3.1"
     },
     {
       "type": "panel",
@@ -46,6 +46,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
+  "iteration": 1540393009564,
   "links": [],
   "panels": [
     {
@@ -53,7 +54,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_SERVER}",
+      "datasource": "${DS_PROM_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -85,7 +86,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.95, sum(rate(ui_request_latency_seconds_bucket[5m])) by (le))",
+          "expr": "histogram_quantile(0.95, sum(rate(ui_request_latency_seconds_bucket{kubernetes_namespace=~\"$namespace\"}[5m])) by (le))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -125,14 +126,18 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_SERVER}",
+      "datasource": "${DS_PROM_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -204,14 +209,18 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS_SERVER}",
+      "datasource": "${DS_PROM_PROMETHEUS}",
       "description": "All HTTP request",
       "fill": 1,
       "gridPos": {
@@ -244,7 +253,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(ui_request_count{http_status=~\"^[2].*\"}[1m])",
+          "expr": "ui_request_count{kubernetes_namespace=~\"$namespace\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -286,7 +295,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "10s",
@@ -294,7 +307,29 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROM_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Env",
+        "multi": true,
+        "name": "namespace",
+        "options": [],
+        "query": "label_values(namespace)",
+        "refresh": 1,
+        "regex": "/.+/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-5m",
@@ -328,5 +363,5 @@
   "timezone": "",
   "title": "UI_Service_Monitoring",
   "uid": "yK8BJlAik",
-  "version": 4
+  "version": 3
 }

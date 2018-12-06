@@ -15,5 +15,5 @@ vault.key
 .cache
 .pytest_cache
 .env
-/Gitlab_ci
+Gitlab_ci/
 
